@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rally STOP Bicycle</title>
+    <style>
+        :root { --primary: #9b111e; --dark: #0d0d0d; --light: #f5f5f5; --gray: #1a1a1a; --accent: #262626; } 
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; } 
+        body { background: var(--dark); color: var(--light); line-height: 1.4; overflow-x: hidden; } 
+        
+        body.is-mobile { font-size: 14px; }
+        body.is-desktop { font-size: 16px; }
+
+        header { position: relative; background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://unsplash.com') center/cover; padding: 130px 20px 40px; text-align: center; border-bottom: 3px solid var(--primary); } 
+        
+        /* Стабильная анимация велосипеда */
+        .bike-container { position: absolute; top: 25px; left: 50%; transform: translateX(-50%); width: 120px; height: 70px; display: flex; justify-content: center; } 
+        .bike-wrapper { position: relative; width: 100%; height: 100%; animation: driveIn 2s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+        .bike-frame { position: absolute; width: 100%; height: 100%; background: url("data:image/svg+xml;<svg xmlns='http://w3.org' viewBox='0 0 100 60' fill='none' stroke='%239b111e' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'><path d='M20 45 L45 45 L73 22 L35 22 Z M45 45 L58 22 M20 45 L35 22 M73 22 L78 15 M35 22 L32 12 L42 12'/></svg>") center/contain no-repeat; z-index: 3; } 
+        .bike-wheel { position: absolute; width: 38px; height: 38px; background: url("data:image/svg+xml;<svg xmlns='http://w3.org' viewBox='0 0 40 40' fill='none' stroke='%23f5f5f5' stroke-width='3.5'><circle cx='20' cy='20' r='17'/><path d='M20 3 L20 37 M3 20 L37 20 M8 8 L32 32 M8 33 L32 7'/></svg>") center/contain no-repeat; z-index: 2; bottom: 0; animation: spin 0.4s linear infinite; } 
+        .wheel-back { left: 0; } .wheel-front { right: 0; } 
+        
+        @keyframes driveIn { 0% { transform: translateX(-300px); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } } 
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } } 
+
+        .logo { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; color: #fff; margin-top: 15px; text-shadow: 0 4px 10px #000; } 
+        .logo span { color: var(--primary); } 
+        .container { max-width: 600px; margin: 0 auto; padding: 25px 15px; } 
+        .reveal { margin-bottom: 25px; } 
+        .promo-text { font-size: 1.2rem; text-align: center; color: #ccc; } 
+        h2 { font-size: 1.5rem; color: #fff; margin-bottom: 15px; text-transform: uppercase; border-left: 4px solid var(--primary); padding-left: 10px; } 
+        .features, .video-box, .event-box { background: var(--gray); padding: 20px; border-radius: 12px; border: 1px solid #222; } 
+        .feature-item { margin-bottom: 12px; padding-left: 25px; position: relative; } 
+        .feature-item:last-child { margin-bottom: 0; }
+        .feature-title { font-weight: 700; color: var(--primary); } 
+        .feature-item::before { content: "➔"; position: absolute; left: 0; color: var(--primary); } 
+        
+        /* Стили для новых блоков */
+        .event-box { background: linear-gradient(145deg, #1a1a1a, #221012); margin-bottom: 25px; }
+        .badge { display: inline-block; background: var(--primary); color: #fff; padding: 3px 8px; font-size: 0.8rem; font-weight: bold; border-radius: 4px; margin-bottom: 10px; text-transform: uppercase; }
+        .record-text { font-size: 1.1rem; color: #ffeb3b; font-weight: bold; margin-top: 10px; }
+
+        .video-box video { width: 100%; height: auto; border-radius: 6px; margin-top: 5px; } 
+        .info-box { background: linear-gradient(135deg, #b71c1c, #7f0000); padding: 25px 20px; border-radius: 12px; text-align: center; box-shadow: 0 10px 25px rgba(155, 17, 30, 0.3); } 
+        .price { font-size: 1.7rem; font-weight: 900; margin-bottom: 5px; } 
+        .phone a { color: #fff; text-decoration: none; background: rgba(0,0,0,0.3); padding: 8px 20px; border-radius: 20px; display: inline-block; margin-top: 10px; font-weight: bold; } 
+        footer { text-align: center; padding: 20px; color: #444; font-size: 0.8rem; } 
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="bike-container">
+            <div class="bike-wrapper">
+                <div class="bike-frame"></div>
+                <div class="bike-wheel wheel-back"></div>
+                <div class="bike-wheel wheel-front"></div>
+            </div>
+        </div>
+        <h1 class="logo">Rally <span>STOP</span> Bicycle</h1>
+    </header>
+
+    <div class="container">
+        <div class="reveal promo-text">
+            <p>Скорость и адреналин на новой велотрассе!</p>
+        </div>
+
+        <!-- Блок про субботние гонки -->
+        <div class="reveal event-box">
+            <span class="badge">Каждую субботу</span>
+            <h2>Мини-соревнования</h2>
+            <p>Участвуй в гонке всего за <b>200 рублей</b>! Приезжаешь первым — забираешь <b>250 рублей</b> обратно!</p>
+        </div>
+
+        <!-- Блок про рекорд -->
+        <div class="reveal event-box">
+            <span class="badge">Рекорд трассы</span>
+            <h2>Побей рекорд круга</h2>
+            <p>Текущий рекорд — всего <b>5 минут</b>! Сможешь быстрее? Сделай это во время субботней гонки и получи <b>следующее посещение бесплатно</b>!</p>
+        </div>
+
+        <div class="reveal">
+            <h2>О трассе</h2>
+            <div class="features">
+                <div class="feature-item">
+                    <div class="feature-title">Ландшафт</div>
+                    <p>Крутые подъемы, спуски и природные препятствия.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-title">Для всех</div>
+                    <p>Подходит как новичкам, так и опытным райдерам.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="reveal video-box">
+            <h2>Видео трассы</h2>
+            <video controls poster="https://unsplash.com">
+                <source src="videos.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="reveal info-box">
+            <h2>Цена и контакты</h2>
+            <div class="price">Обычный круг — 150 ₽</div>
+            <p>Запись по телефону:</p>
+            <div class="phone">
+                <a href="tel:+79616007536">+7 961 600 75 36</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Rally STOP Bicycle.</p>
+    </footer>
+
+    <script>
+        function detectDevice() {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            if (isMobile) {
+                document.body.classList.add('is-mobile');
+            } else {
+                document.body.classList.add('is-desktop');
+            }
+        }
+        detectDevice();
+    </script>
+</body>
+</html>
